@@ -1,6 +1,8 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Button from "./components/Button";
+import Card from "./components/Card";
 
 type SubMenu = {
   id: number;
@@ -16,11 +18,15 @@ type MenuType = {
 function App() {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [accountData, setAccountData] = useState<MenuType[]>([]);
+  const [isAnyCardSelected, setIsAnyCardSelected] = useState(false);
 
   function openAccount(id: number): void {
     setOpenMenuId((prev) => (prev === id ? null : id));
   }
 
+  function triggerCardsCheckbox(isChecked: boolean) {
+    setIsAnyCardSelected(isChecked);
+  }
   useEffect(() => {
     axios
       .get<
@@ -35,20 +41,18 @@ function App() {
 
   return (
     <>
-      <div className="w-full h-screen flex">
+      <div className="w-full h-screen flex py-10 px-80">
         {/* painel A  */}
 
-        <section className="resize-x overflow-auto p-4 w-3/12 min-w-2xs border-1 rounded-tr-2xl rounded-br-2xl">
+        <section className="resize-x overflow-hidden p-4 w-3/12 min-w-2xs border rounded-l-2xl">
           {/* componente 1  */}
 
           <div className="w-full h-30 flex items-center border-b-2">
             <Menu>
               <MenuButton className="inline-flex items-center gap-2 rounded-md  px-3 py-1.5 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:not-data-focus:outline-none data-focus:outline cursor-pointer ">
-                <img
-                  className="object-cover w-20 rounded-full"
-                  src="https://avatars.githubusercontent.com/u/84355579?v=4"
-                  alt=""
-                />
+                <div className="text-black border rounded-full w-10 h-10 flex justify-center items-center">
+                  OA
+                </div>
               </MenuButton>
 
               <MenuItems
@@ -96,7 +100,55 @@ function App() {
 
           {/* painel B */}
         </section>
-        <section className="w-9/12">painel B</section>
+        <section className="w-9/12 border-r border-b border-t rounded-r-2xl px-1">
+          {/* elemento 3 */}
+
+          <div className="flex flex-col w-full justify-center items-center  pb-8">
+            <div className="w-full  h-40 flex justify-center items-center">
+              <input
+                type="text"
+                className="border rounded-2xl w-8/12 h-10 pl-4"
+              />
+            </div>
+            <div className="flex justify-around w-3/6">
+              <Button name="Atribuir" />
+              <Button name="Arquivar" />
+              <Button name="Agendar" />
+            </div>
+          </div>
+
+          {/* elemento 4*/}
+          <div>
+            <Card
+              owner="OA"
+              name="Rafael"
+              subject="Boa tarde"
+              isAnyCardSelected={isAnyCardSelected}
+              triggerCardsCheckbox={triggerCardsCheckbox}
+            />
+            <Card
+              owner="OA"
+              name="Rafael"
+              subject="Boa tarde"
+              isAnyCardSelected={isAnyCardSelected}
+              triggerCardsCheckbox={triggerCardsCheckbox}
+            />
+            <Card
+              owner="OA"
+              name="Rafael"
+              subject="Boa tarde"
+              isAnyCardSelected={isAnyCardSelected}
+              triggerCardsCheckbox={triggerCardsCheckbox}
+            />
+            <Card
+              owner="OA"
+              name="Rafael"
+              subject="Boa tarde"
+              isAnyCardSelected={isAnyCardSelected}
+              triggerCardsCheckbox={triggerCardsCheckbox}
+            />
+          </div>
+        </section>
       </div>
     </>
   );
