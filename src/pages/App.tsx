@@ -97,7 +97,7 @@ function App() {
       {/* painel A */}
 
       <section
-        className={`w-full ${isDark ? "dark:bg-orange-400" : ""} md:w-3/12 border rounded-2xl md:rounded-l-2xl md:rounded-r-none p-4`}
+        className={`w-full ${isDark ? "dark:bg-orange-400" : ""} resize-x overflow-hidden min-w-82 md:w-3/12 border rounded-2xl md:rounded-l-2xl md:rounded-r-none p-4`}
       >
         <div className="w-full h-30 flex items-center border-b-2 justify-around">
           <Menu>
