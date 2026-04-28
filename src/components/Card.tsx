@@ -25,7 +25,7 @@ export default function Card({
     <div
       onClick={() => toggleSelect(id, !isSelected)}
       className={`${
-        isSelected ? "bg-orange-300" : "hover:bg-orange-400"
+        isSelected ? "bg-orange-300" : "hover:bg-orange-300"
       } group w-full min-h-20 flex justify-between border cursor-pointer mt-px`}
     >
       <div className={`flex w-3/4 ${isDark ? "text-orange-100" : ""}`}>

@@ -6,6 +6,8 @@ import Card from "../components/Card";
 import { FolderIcon, MailboxIcon } from "@phosphor-icons/react";
 import { Link } from "react-router-dom";
 
+import { ENDPOINT_MENUS, ENDPOINT_ITEMS } from "../api/endpoints";
+
 type SubMenu = {
   id: number;
   name: string;
@@ -36,6 +38,8 @@ function App() {
   const [emailData, setEmailData] = useState<EmailResponse[]>([]);
   const [currentSubmenuId, setCurrentSubmenuId] = useState<number | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const [isDark, setIsDark] = useState(false);
 
   function toggleSelect(id: string, isChecked: boolean) {
     if (isChecked) {
@@ -76,23 +80,17 @@ function App() {
 
   useEffect(() => {
     axios
-      .get<
-        MenuType[]
-      >("https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/menus")
+      .get<MenuType[]>(ENDPOINT_MENUS)
       .then((response) => setAccountData(response.data));
 
     axios
-      .get<
-        EmailResponse[]
-      >("https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/items")
+      .get<EmailResponse[]>(ENDPOINT_ITEMS)
       .then((response) => setEmailData(response.data));
   }, []);
 
-  const [isDark, setIsDark] = useState(false);
-
   return (
     <div
-      className={` ${isDark ? "w-full min-h-screen flex flex-col md:flex-row p-4 md:py-10 md:px-20 bg-white  text-black " : "w-full min-h-screen flex flex-col md:flex-row p-4 md:py-10 md:px-20 bg-white  text-black"}`}
+      className={` ${isDark ? "w-full min-h-screen justify-center flex flex-col md:flex-row p-4 md:py-10 md:px-20 bg-gray-800  text-black " : "w-full min-h-screen justify-center flex flex-col md:flex-row p-4 md:py-10 md:px-20 bg-white  text-black"}`}
     >
       {/* painel A */}
 
