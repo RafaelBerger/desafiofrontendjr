@@ -1,7 +1,10 @@
+import { useState } from "react";
+
 interface CardProps {
   name: string;
   subject: string;
   owner: string;
+  users: string[];
   isAnyCardSelected: boolean;
   triggerCardsCheckbox: (checked: boolean) => void;
 }
@@ -10,9 +13,16 @@ export default function Card({
   name,
   subject,
   owner,
+  users,
   isAnyCardSelected,
   triggerCardsCheckbox,
 }: CardProps) {
+  const [colorChange, setColorChange] = useState(false);
+
+  function handleColorChange() {
+    setColorChange(!colorChange);
+  }
+
   return (
     <div className="group w-full h-25 flex justify-between border cursor-pointer hover:bg-gray-200 mt-px">
       <div className="flex w-3/4">
@@ -33,6 +43,7 @@ export default function Card({
                 type="checkbox"
                 className="w-5 h-5"
                 onChange={(e) => triggerCardsCheckbox(e.target.checked)}
+                onClick={handleColorChange}
               />
             </div>
           </div>
@@ -51,14 +62,15 @@ export default function Card({
             <p>Hoje, 12:07</p>
           </div>
           <div className="flex">
-            <div className="text-black text-[12px] border rounded-full w-7 h-7 flex justify-center items-center">
-              OA
-            </div>
-            <div className="text-black text-[12px] border rounded-full w-7 h-7 flex justify-center items-center">
-              OA
-            </div>
-            <div className="text-black text-[12px] border rounded-full w-7 h-7 flex justify-center items-center">
-              OA
+            <div className="flex">
+              {users.map((user, index) => (
+                <div
+                  key={index}
+                  className="text-black text-[12px] border rounded-full w-7 h-7 flex justify-center items-center"
+                >
+                  {user}
+                </div>
+              ))}
             </div>
           </div>
         </div>

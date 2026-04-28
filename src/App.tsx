@@ -15,18 +15,44 @@ type MenuType = {
   subMenus?: SubMenu[];
 };
 
+type EmailInfo = {
+  id: string;
+  name: string;
+  subject: string;
+  owner: string;
+  users: string[];
+};
+
+type EmailResponse = {
+  id: number;
+  subMenuItems: EmailInfo[];
+};
+
 function App() {
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+
   const [accountData, setAccountData] = useState<MenuType[]>([]);
-  const [isAnyCardSelected, setIsAnyCardSelected] = useState(false);
+  const [emailData, setEmailData] = useState<EmailResponse[]>([]);
+
+  const [isAnyCardSelected, setIsAnyCardSelected] = useState(0);
+  const [currentSubmenuId, setCurrentSubmenuId] = useState<number | null>();
+
+  const extraMenus = [
+    { id: 9991, name: "Caixa de entrada" },
+    { id: 9992, name: "Caixa de saída" },
+    { id: 9993, name: "Inbox" },
+    { id: 9994, name: "Vip" },
+    { id: 9995, name: "Lixo" },
+  ];
 
   function openAccount(id: number): void {
     setOpenMenuId((prev) => (prev === id ? null : id));
   }
 
   function triggerCardsCheckbox(isChecked: boolean) {
-    setIsAnyCardSelected(isChecked);
+    setIsAnyCardSelected((prev) => (isChecked ? prev + 1 : prev - 1));
   }
+
   useEffect(() => {
     axios
       .get<
@@ -35,9 +61,17 @@ function App() {
       .then((response) => {
         setAccountData(response.data);
       });
+
+    axios
+      .get<
+        EmailResponse[]
+      >("https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/items")
+      .then((response) => {
+        setEmailData(response.data);
+      });
   }, []);
 
-  console.log(accountData[0]);
+  console.log(accountData);
 
   return (
     <>
@@ -87,10 +121,24 @@ function App() {
                 </button>
 
                 {openMenuId === data.id &&
-                  data.subMenus?.map((sub) => (
+                  [
+                    ...(data.subMenus || []),
+                    ...extraMenus.filter(
+                      (extra) =>
+                        !(data.subMenus || []).some(
+                          (sub) => sub.name === extra.name,
+                        ),
+                    ),
+                  ].map((sub) => (
                     <div key={sub.id} className="pl-4 ">
-                      <button className="cursor-pointer hover:bg-gray-200">
-                        {sub.name}
+                      <button
+                        className="cursor-pointer hover:bg-gray-200"
+                        onClick={() => setCurrentSubmenuId(sub.id)}
+                      >
+                        {sub.name} (
+                        {emailData.find((item) => item.id === sub.id)
+                          ?.subMenuItems.length || 0}
+                        )
                       </button>
                     </div>
                   ))}
@@ -103,7 +151,7 @@ function App() {
         <section className="w-9/12 border-r border-b border-t rounded-r-2xl px-1">
           {/* elemento 3 */}
 
-          <div className="flex flex-col w-full justify-center items-center  pb-8">
+          <div className="flex flex-col w-full justify-center items-center pb-8">
             <div className="w-full  h-40 flex justify-center items-center">
               <input
                 type="text"
@@ -119,34 +167,22 @@ function App() {
 
           {/* elemento 4*/}
           <div>
-            <Card
-              owner="OA"
-              name="Rafael"
-              subject="Boa tarde"
-              isAnyCardSelected={isAnyCardSelected}
-              triggerCardsCheckbox={triggerCardsCheckbox}
-            />
-            <Card
-              owner="OA"
-              name="Rafael"
-              subject="Boa tarde"
-              isAnyCardSelected={isAnyCardSelected}
-              triggerCardsCheckbox={triggerCardsCheckbox}
-            />
-            <Card
-              owner="OA"
-              name="Rafael"
-              subject="Boa tarde"
-              isAnyCardSelected={isAnyCardSelected}
-              triggerCardsCheckbox={triggerCardsCheckbox}
-            />
-            <Card
-              owner="OA"
-              name="Rafael"
-              subject="Boa tarde"
-              isAnyCardSelected={isAnyCardSelected}
-              triggerCardsCheckbox={triggerCardsCheckbox}
-            />
+            <div>
+              {emailData
+                .filter((group) => group.id === currentSubmenuId)
+                .flatMap((group) => group.subMenuItems)
+                .map((item) => (
+                  <Card
+                    key={item.id}
+                    owner={item.owner}
+                    name={item.name}
+                    subject={item.subject}
+                    users={item.users}
+                    isAnyCardSelected={isAnyCardSelected > 0}
+                    triggerCardsCheckbox={triggerCardsCheckbox}
+                  />
+                ))}
+            </div>
           </div>
         </section>
       </div>
