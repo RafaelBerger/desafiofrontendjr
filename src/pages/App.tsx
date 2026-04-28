@@ -1,9 +1,10 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Button from "./components/Button";
-import Card from "./components/Card";
+import Button from "../components/Button";
+import Card from "../components/Card";
 import { FolderIcon, MailboxIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 
 type SubMenu = {
   id: number;
@@ -101,16 +102,18 @@ function App() {
               <div className="font-semibold ml-2">Rafael Berger</div>
             </MenuButton>
 
-            <MenuItems className="w-52 rounded-xl border p-1 text-white bg-purple-800 ">
+            <MenuItems className="w-52 relative rounded-xl border p-1 text-purple-800 bg-purple-100 ">
               <MenuItem>
                 <button className="w-full px-3 py-1.5 cursor-pointer hover:text-purple-300">
                   PERFIL
                 </button>
               </MenuItem>
               <MenuItem>
-                <button className="w-full px-3 py-1.5 cursor-pointer hover:text-purple-300">
-                  SAIR
-                </button>
+                <Link to="/">
+                  <button className="w-full px-3 py-1.5 cursor-pointer hover:text-purple-300">
+                    SAIR
+                  </button>
+                </Link>
               </MenuItem>
             </MenuItems>
           </Menu>
