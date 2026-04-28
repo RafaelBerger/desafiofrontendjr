@@ -1,73 +1,121 @@
-# React + TypeScript + Vite
+# Desafio Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web desenvolvida como parte de um desafio técnico, com foco em layout, usabilidade, responsividade e organização de componentes.
 
-Currently, two official plugins are available:
+##
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+ # Em Produção
 
-## React Compiler
+[https://desafiofrontendjr.vercel.app/]
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-## Expanding the ESLint configuration
+##  Sobre o projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+A aplicação simula um gerenciador de e-mails com navegação por menus, listagem dinâmica de mensagens e ações sobre os itens.  
+O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, seguindo boas práticas de desenvolvimento com React.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+##
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+##  Funcionalidades
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+-  Tela de login simples (sem validadar usuario)
+-  Menu lateral dinâmico consumindo API
+-  Listagem de e-mails por categoria
+-  Seleção de múltiplos itens
+-  Arquivamento de e-mails (remoção da lista)
+-  Seleção via clique no card (melhoria de usabilidade para mobile)
+-  Alternância de tema (Dark / Light)
+-  Layout totalmente responsivo (mobile e desktop)
+-  Roteamento com React Router Dom
+
+##
+
+##  Diferenciais implementados
+
+###  Foco em experiência do usuário (UX):
+
+- Interações visuais suaves  
+- Feedback claro de seleção  
+- Adaptação para mobile (clique no card seleciona o card)
+
+### Cuidado com dados sensíveis:
+
+- .ENV implementado para armazenar conteúdos sensíveis (APIs)
+
+### Componentização:
+
+- Separação clara de responsabilidades  
+- Reutilização de componentes (Card, Button, etc)
+
+##
+
+
+🛠️ Tecnologias utilizadas
+
+- React.js  
+- TypeScript  
+- Tailwind CSS  
+- Axios  
+- Headless UI  (Para usar um dropdown)
+- PhosphorIcons (Biblioteca de icones)
+- React Router Dom (Biblioteca de roteamento)
+
+---
+
+## 🔌 Integração com API
+
+Os dados são consumidos a partir de endpoints externos:
+
+
+#### Menus
+
+```http
+  https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/menus
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### Items
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```http
+  https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/items
 ```
+---
+
+##  Responsividade
+
+A aplicação foi projetada para funcionar bem em diferentes tamanhos de tela:
+
+- Desktop 
+- Tablet 
+- Mobile 
+
+Com adaptação de layout e interações.
+
+---
+
+##  Considerações finais
+
+O foco principal do projeto foi entregar uma aplicação:
+
+- Visualmente agradável  
+- Funcional e intuitiva  
+- Bem estruturada  
+- Próxima de um cenário real de desenvolvimento  
+
+Além dos requisitos obrigatórios, foram adicionadas melhorias de usabilidade e experiência para enriquecer o resultado final.
+
+---
+
+## 📌 Como rodar o projeto
+
+```bash
+# instalar dependências
+npm install
+
+# adicionar o .env
+VITE_ENDPOINT_MENUS=[APIVEMAQUI]
+VITE_ENDPOINT_ITEMS=[APIVEMAQUI]
+
+
+# rodar o projeto
+npm run dev
