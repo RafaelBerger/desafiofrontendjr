@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import Button from "./components/Button";
 import Card from "./components/Card";
+import { FolderIcon, MailboxIcon } from "@phosphor-icons/react";
 
 type SubMenu = {
   id: number;
@@ -94,8 +95,9 @@ function App() {
       });
   }, []);
 
+  //TODO: fazer com que os checkbox marquem clicando no componente do card
   return (
-    <div className="w-full h-screen flex py-10 px-80">
+    <div className="w-full h-auto min-h-230 flex py-10 px-80">
       {/* painel A */}
       <section className="resize-x overflow-hidden p-4 w-3/12 min-w-2xs border rounded-l-2xl">
         <div className="w-full h-30 flex items-center border-b-2">
@@ -128,10 +130,13 @@ function App() {
 
         <div className="w-full h-full">
           {accountData.map((data) => (
-            <div key={data.id} className="p-3">
-              <button onClick={() => openAccount(data.id)}>
-                - {data.name}
-              </button>
+            <div key={data.id} className="p-3 ">
+              <div className="flex ">
+                <MailboxIcon size={32} className="mr-2" />
+                <button onClick={() => openAccount(data.id)}>
+                  {data.name}
+                </button>
+              </div>
 
               {openMenuId === data.id &&
                 [
@@ -145,10 +150,17 @@ function App() {
                 ].map((sub) => (
                   <div key={sub.id} className="pl-4">
                     <button onClick={() => handleSubmenuClick(sub.id)}>
-                      {sub.name} (
-                      {emailData.find((item) => item.id === sub.id)
-                        ?.subMenuItems.length || 0}
-                      )
+                      <div className="flex justify-center items-center">
+                        <span className="pr-1">
+                          <FolderIcon size={16} />
+                        </span>{" "}
+                        <span>
+                          {sub.name} (
+                          {emailData.find((item) => item.id === sub.id)
+                            ?.subMenuItems.length || 0}
+                          )
+                        </span>
+                      </div>
                     </button>
                   </div>
                 ))}
@@ -158,7 +170,7 @@ function App() {
       </section>
 
       {/* painel B */}
-      <section className="w-9/12 border rounded-r-2xl px-1">
+      <section className="w-9/12 pb-6 border rounded-r-2xl px-1">
         <div className="flex flex-col items-center pb-8">
           <div className="w-full h-40 flex justify-center items-center">
             <input className="border rounded-2xl w-8/12 h-10 pl-4" />

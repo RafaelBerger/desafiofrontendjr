@@ -20,7 +20,7 @@ export default function Card({
   toggleSelect,
 }: CardProps) {
   return (
-    <div className="group w-full h-25 flex justify-between border cursor-pointer hover:bg-gray-200 mt-px">
+    <div className="group w-full h-25 flex justify-between border cursor-pointer hover:bg-purple-200 mt-px">
       <div className="flex w-3/4">
         <div className="flex px-10 items-center">
           <div className="relative w-10 h-10">
