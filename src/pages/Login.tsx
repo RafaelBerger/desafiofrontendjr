@@ -1,10 +1,14 @@
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
-function Login() {
+interface LoginProps {
+  isDark: boolean;
+}
+
+function Login({ isDark }: LoginProps) {
   return (
-    <section className="w-screen h-screen flex justify-center items-center bg-purple-300 p-4">
-      <div className="w-full max-w-4xl h-auto md:h-4/6 bg-purple-500 rounded-2xl flex flex-col md:flex-row overflow-hidden">
+    <section className="w-screen h-screen flex justify-center items-center bg-orange-300 p-4">
+      <div className="w-full max-w-4xl h-auto md:h-4/6 bg-orange-500 rounded-2xl flex flex-col md:flex-row overflow-hidden">
         <div className="w-full md:w-4/6 flex flex-col justify-center items-center text-center md:text-left p-6">
           <h1 className="text-white font-bold text-2xl md:text-3xl pb-4">
             Bem Vindo
@@ -42,7 +46,7 @@ function Login() {
               to="/email"
               className="w-full flex justify-center items-center"
             >
-              <Button name="Login" />
+              <Button isDark={isDark} name="Login" />
             </Link>
           </div>
         </div>
