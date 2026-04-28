@@ -2,10 +2,10 @@ import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 interface LoginProps {
-  isDark: boolean;
+  isDark?: boolean;
 }
 
-function Login({ isDark }: LoginProps) {
+function Login({ isDark = false }: LoginProps) {
   return (
     <section className="w-screen h-screen flex justify-center items-center bg-orange-300 p-4">
       <div className="w-full max-w-4xl h-auto md:h-4/6 bg-orange-500 rounded-2xl flex flex-col md:flex-row overflow-hidden">
