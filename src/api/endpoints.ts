@@ -1,7 +1,2 @@
-export const ENDPOINT_MENUS =
-  "https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/menus";
-
-export const ENDPOINT_ITEMS =
-  "https://my-json-server.typicode.com/EnkiGroup/DesafioFrontEnd2026Jr/items";
-
-//Necessário colocar os endpoints em .env
+export const ENDPOINT_MENUS = import.meta.env.VITE_ENDPOINT_MENUS;
+export const ENDPOINT_ITEMS = import.meta.env.VITE_ENDPOINT_ITEMS;
