@@ -97,7 +97,7 @@ function App() {
       {/* painel A */}
 
       <section
-        className={`w-full ${isDark ? "dark:bg-orange-400" : ""} resize-x overflow-hidden min-w-82 md:w-3/12 border rounded-2xl md:rounded-l-2xl md:rounded-r-none p-4`}
+        className={`w-full ${isDark ? "dark:bg-orange-500" : ""} resize-x overflow-hidden min-w-82 md:w-3/12 border rounded-2xl md:rounded-l-2xl md:rounded-r-none p-4`}
       >
         <div className="w-full h-30 flex items-center border-b-2 justify-around">
           <Menu>
@@ -186,10 +186,10 @@ function App() {
 
       {/* painel B */}
       <section
-        className={`w-full ${isDark ? "dark:bg-orange-500" : ""} md:w-9/12 border rounded-2xl md:rounded-r-2xl md:rounded-l-none mt-4 md:mt-0 pb-6 `}
+        className={`w-full ${isDark ? "dark:bg-orange-400" : ""} md:w-9/12 border rounded-2xl md:rounded-r-2xl md:rounded-l-none mt-4 md:mt-0 pb-6 `}
       >
         <div
-          className={`${isDark ? "flex flex-col items-center pb-6 bg-orange-400 rounded-tr-2xl dark:bg-orange-500" : "flex flex-col items-center pb-6 bg-orange-500 rounded-tr-2xl"} `}
+          className={`${isDark ? "flex flex-col items-center pb-6 bg-orange-400 rounded-tr-2xl dark:bg-orange-400" : "flex flex-col items-center pb-6 bg-orange-500 rounded-tr-2xl"} `}
         >
           <div className="w-full flex justify-center py-4 mt-8">
             <input
