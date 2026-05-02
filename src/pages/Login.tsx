@@ -14,10 +14,9 @@ function Login({ isDark = false }: LoginProps) {
             Bem Vindo
           </h1>
 
-          <p className="text-white text-sm md:text-lg">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit
-            explicabo amet maxime ab ex dignissimos earum repudiandae voluptates
-            eum dolore.
+          <p className="text-white text-center text-sm md:text-lg">
+            Simplifique sua comunicação. Onde cada mensagem encontra o seu
+            lugar.
           </p>
         </div>
 
