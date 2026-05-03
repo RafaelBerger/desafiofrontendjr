@@ -18,7 +18,7 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 
 ##  Funcionalidades
 
--  Tela de login simples (sem validadar usuario)
+-  Tela de login (Simulação de validação usando admin como login e senha)
 -  Menu lateral dinâmico consumindo API
 -  Listagem de e-mails por categoria
 -  Seleção de múltiplos itens
@@ -34,9 +34,13 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 
 ###  Foco em experiência do usuário (UX):
 
-- Interações visuais suaves  
 - Feedback claro de seleção  
 - Adaptação para mobile (clique no card seleciona o card)
+
+
+### Simulação de Login:
+- Simulação de login e logoff (informações fixas usando *admin* para login e senha)
+- Utilização de localStorage para salvar informações da pagina de Login e usá-las para validar para usuario acessar pagina /email caso logado
 
 ### Cuidado com dados sensíveis:
 
