@@ -18,7 +18,7 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 
 ##  Funcionalidades
 
--  Tela de login simples (sem validadar usuario)
+-  Tela de login (Simulação de validação usando admin como login e senha)
 -  Menu lateral dinâmico consumindo API
 -  Listagem de e-mails por categoria
 -  Seleção de múltiplos itens
