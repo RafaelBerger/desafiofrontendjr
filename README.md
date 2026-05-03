@@ -25,6 +25,7 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 -  Arquivamento de e-mails (remoção da lista)
 -  Seleção via clique no card (melhoria de usabilidade para mobile)
 -  Alternância de tema (Dark / Light)
+-  Globalização (pt-br / en)
 -  Layout totalmente responsivo (mobile e desktop)
 -  Roteamento com React Router Dom
 
@@ -39,8 +40,8 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 
 
 ### Simulação de Login:
-- Simulação de login e logoff (informações fixas usando *admin* para login e senha)
-- Utilização de localStorage para salvar informações da pagina de Login e usá-las para validar para usuario acessar pagina /email caso logado
+- Simulação de login e logoff (validação de informações fixas usando *admin* para login e senha)
+- Utilização de localStorage para salvar informações da pagina de Login e usá-las para autenticar usuario e acessar pagina /email apenas autenticado
 
 ### Cuidado com dados sensíveis:
 
@@ -63,6 +64,7 @@ O objetivo principal foi criar uma interface moderna, responsiva e intuitiva, se
 - Headless UI  (Para usar um dropdown)
 - PhosphorIcons (Biblioteca de icones)
 - React Router Dom (Biblioteca de roteamento)
+- i18n (Biblioteca para globalização)
 
 ---
 
