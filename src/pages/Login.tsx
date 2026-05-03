@@ -51,13 +51,14 @@ function Login({ isDark = false }: LoginProps) {
               <span className="pb-1 text-sm md:text-base">Login</span>
               <input
                 type="text"
-                placeholder="Email ou Apelido"
+                placeholder="admin"
                 className="border rounded-sm pl-2 h-10 w-full"
                 onChange={(e) => setLogin(e.target.value)}
               />
 
               <span className="pb-1 pt-3 text-sm md:text-base">Senha</span>
               <input
+                placeholder="admin"
                 type="password"
                 className="border rounded-sm pl-2 h-10 w-full"
                 onChange={(e) => setPassword(e.target.value)}
