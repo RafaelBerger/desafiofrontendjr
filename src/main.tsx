@@ -5,6 +5,8 @@ import "./index.css";
 import App from "./pages/App.tsx";
 import Login from "./pages/Login.tsx";
 
+import ConfirmAuth from "./components/ConfirmAuth.tsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -12,7 +14,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/email",
-    element: <App />,
+    element: (
+      <ConfirmAuth>
+        <App />
+      </ConfirmAuth>
+    ),
   },
 ]);
 

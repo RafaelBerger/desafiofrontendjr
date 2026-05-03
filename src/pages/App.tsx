@@ -4,7 +4,7 @@ import axios from "axios";
 import Button from "../components/Button";
 import Card from "../components/Card";
 import { FolderIcon, MailboxIcon } from "@phosphor-icons/react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { ENDPOINT_MENUS, ENDPOINT_ITEMS } from "../api/endpoints";
 
@@ -33,6 +33,8 @@ type EmailResponse = {
 };
 
 function App() {
+  const navigate = useNavigate();
+
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
   const [accountData, setAccountData] = useState<MenuType[]>([]);
   const [emailData, setEmailData] = useState<EmailResponse[]>([]);
@@ -68,6 +70,12 @@ function App() {
     { id: 103, name: "Vip" },
     { id: 104, name: "Lixo" },
   ];
+
+  function handleLogOff() {
+    localStorage.removeItem("isAuth");
+
+    navigate("/");
+  }
 
   function openAccount(id: number): void {
     setOpenMenuId((prev) => (prev === id ? null : id));
@@ -118,11 +126,12 @@ function App() {
                 </button>
               </MenuItem>
               <MenuItem>
-                <Link to="/">
-                  <button className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300">
-                    SAIR
-                  </button>
-                </Link>
+                <button
+                  onClick={handleLogOff}
+                  className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300"
+                >
+                  SAIR
+                </button>
               </MenuItem>
             </MenuItems>
           </Menu>
