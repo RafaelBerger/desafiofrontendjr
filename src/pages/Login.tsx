@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Button from "../components/Button";
+
 import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 
 interface LoginProps {
   isDark?: boolean;
@@ -9,6 +12,8 @@ interface LoginProps {
 function Login({ isDark = false }: LoginProps) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -29,12 +34,11 @@ function Login({ isDark = false }: LoginProps) {
       <div className="w-full max-w-4xl h-auto md:h-4/6 bg-orange-500 rounded-2xl flex flex-col md:flex-row overflow-hidden">
         <div className="w-full md:w-4/6 flex flex-col justify-center items-center text-center md:text-left p-6">
           <h1 className="text-white font-bold text-2xl md:text-3xl pb-4">
-            Bem Vindo
+            {t("loginTitle")}
           </h1>
 
           <p className="text-white text-center text-sm md:text-lg">
-            Simplifique sua comunicação. Onde cada mensagem encontra o seu
-            lugar.
+            {t("loginText")}
           </p>
         </div>
 
@@ -44,7 +48,7 @@ function Login({ isDark = false }: LoginProps) {
             onSubmit={handleAuth}
           >
             <h1 className="font-medium text-xl md:text-2xl pb-6">
-              Login de usuário
+              {t("userLoginText")}
             </h1>
 
             <div className="w-full flex flex-col pb-5">
@@ -56,7 +60,9 @@ function Login({ isDark = false }: LoginProps) {
                 onChange={(e) => setLogin(e.target.value)}
               />
 
-              <span className="pb-1 pt-3 text-sm md:text-base">Senha</span>
+              <span className="pb-1 pt-3 text-sm md:text-base">
+                {t("password")}
+              </span>
               <input
                 placeholder="admin"
                 type="password"
