@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface CardProps {
   id: string;
   name: string;
@@ -21,6 +23,7 @@ export default function Card({
   isSelected,
   toggleSelect,
 }: CardProps) {
+  const { t } = useTranslation();
   return (
     <div
       onClick={() => toggleSelect(id, !isSelected)}
@@ -65,7 +68,10 @@ export default function Card({
 
       <div className="flex items-center pr-4 md:pr-10">
         <div className="flex flex-col items-center text-xs md:text-sm">
-          <p className={`${isDark ? "text-orange-100" : ""}`}>Hoje, 12:07</p>
+          <p className={`${isDark ? "text-orange-100" : ""}`}>
+            {" "}
+            {`${t("today")}, 12:07`}
+          </p>
 
           <div className="flex flex-wrap max-w-25 md:max-w-none">
             {users.map((user, index) => (

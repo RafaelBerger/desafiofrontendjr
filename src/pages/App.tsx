@@ -1,10 +1,16 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react";
 import { useState, useEffect } from "react";
+
 import axios from "axios";
+
 import Button from "../components/Button";
 import Card from "../components/Card";
+
 import { FolderIcon, MailboxIcon } from "@phosphor-icons/react";
+
 import { useNavigate } from "react-router-dom";
+
+import { useTranslation } from "react-i18next";
 
 import { ENDPOINT_MENUS, ENDPOINT_ITEMS } from "../api/endpoints";
 
@@ -40,6 +46,8 @@ function App() {
   const [emailData, setEmailData] = useState<EmailResponse[]>([]);
   const [currentSubmenuId, setCurrentSubmenuId] = useState<number | null>(null);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
+
+  const { t, i18n } = useTranslation();
 
   const [isDark, setIsDark] = useState(false);
 
@@ -77,6 +85,11 @@ function App() {
     navigate("/");
   }
 
+  function changeLanguageAndSave(lang: string) {
+    i18n.changeLanguage(lang);
+    localStorage.setItem("lang", lang);
+  }
+
   function openAccount(id: number): void {
     setOpenMenuId((prev) => (prev === id ? null : id));
   }
@@ -105,6 +118,18 @@ function App() {
       <section
         className={`w-full ${isDark ? "dark:bg-orange-500" : ""} resize-x overflow-hidden min-w-82 md:w-3/12 border rounded-2xl md:rounded-l-2xl md:rounded-r-none p-4`}
       >
+        <button
+          className="w-12 border cursor-pointer hover:bg-gray-400"
+          onClick={() => changeLanguageAndSave("pt")}
+        >
+          🇧🇷
+        </button>
+        <button
+          className="w-12 border cursor-pointer hover:bg-gray-400"
+          onClick={() => changeLanguageAndSave("en")}
+        >
+          🇺🇸
+        </button>
         <div className="w-full h-30 flex items-center border-b-2 justify-around">
           <Menu>
             <MenuButton className="flex justify-center items-center cursor-pointer">
@@ -115,14 +140,14 @@ function App() {
               <div
                 className={` ${isDark ? "font-semibold ml-2 dark:text-white" : "font-semibold ml-2"} `}
               >
-                Rafael Berger
+                Admin
               </div>
             </MenuButton>
 
             <MenuItems className="w-52 absolute rounded-xl border p-1 text-orange-800 bg-orange-100 ">
               <MenuItem>
                 <button className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300">
-                  PERFIL
+                  {t("profile")}
                 </button>
               </MenuItem>
               <MenuItem>
@@ -130,17 +155,17 @@ function App() {
                   onClick={handleLogOff}
                   className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300"
                 >
-                  SAIR
+                  {t("logout")}
                 </button>
               </MenuItem>
             </MenuItems>
           </Menu>
           <div className="pl-4 flex flex-col h-full justify-around">
             <div onClick={() => setIsDark(true)}>
-              <Button isDark={isDark} name="Escuro" />
+              <Button isDark={isDark} name={t("dark")} />
             </div>
             <div onClick={() => setIsDark(false)}>
-              <Button isDark={isDark} name="Claro" />
+              <Button isDark={isDark} name={t("light")} />
             </div>
           </div>
         </div>
@@ -200,15 +225,19 @@ function App() {
         >
           <div className="w-full flex justify-center py-4 mt-8">
             <input
-              placeholder="Pesquisar"
+              placeholder={t("search")}
               className="border rounded-2xl w-11/12 md:w-8/12 h-10 pl-4 bg-white"
             />
           </div>
 
           <div className="flex flex-col justify-around items-center md:flex-row gap-2 w-11/12 md:w-3/6">
-            <Button isDark={isDark} name="Atribuir" />
-            <Button isDark={isDark} name="Arquivar" onClick={handleArchive} />
-            <Button isDark={isDark} name="Agendar" />
+            <Button isDark={isDark} name={t("assign")} />
+            <Button
+              isDark={isDark}
+              name={t("archive")}
+              onClick={handleArchive}
+            />
+            <Button isDark={isDark} name={t("schedule")} />
           </div>
         </div>
 
