@@ -61,7 +61,7 @@ export default function Card({
               {name}
             </h1>
             <p className="truncate max-w-37.5 md:max-w-none">{subject}</p>
-            <p className="text-sm">caixa de entrada</p>
+            <p className="text-sm">Caixa de entrada</p>
           </div>
         </div>
       </div>

@@ -146,11 +146,6 @@ function App() {
 
             <MenuItems className="w-52 absolute rounded-xl border p-1 text-orange-800 bg-orange-100 ">
               <MenuItem>
-                <button className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300">
-                  {t("profile")}
-                </button>
-              </MenuItem>
-              <MenuItem>
                 <button
                   onClick={handleLogOff}
                   className="w-full px-3 py-1.5 cursor-pointer hover:text-orange-300"
